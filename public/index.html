@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <title>Tegalan</title>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            --sb-track-color: #ffffff;
+            --sb-thumb-color: #0558d4;
+            --sb-size: 10px;
+        }
+
+        body::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 1px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 8px;
+        }
+
+        @supports not selector(::-webkit-scrollbar) {
+            body {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-poppins">
+    <!-- navbar start -->
+    <nav id="nav" class="w-full bg-transparent fixed z-[99999]">
+        <div class=" mx-[20px] flex flex-wrap items-center justify-between md:mx-[40px] xl:mx-[110px] py-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <span id="logo" class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Tegalin</span>
+            </a>
+            <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
+                <button id="language" type="button" data-dropdown-toggle="language-dropdown-menu"
+                    class="inline-flex items-center font-medium justify-start px-4 py-2 text-sm text-white rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-slate-200 hover:bg-opacity-50  hover:text-slate-900">
+                    <img id="flag-idn" class="flag-idn me-3" src="/public/assets/icon-idn.png" alt="">
+                    <a id="language-text" class="language-text cursor-pointer">IDN</a>
+                </button>
+                <!-- Dropdown -->
+                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
+                    id="language-dropdown-menu">
+                    <ul class="py-2 font-medium" role="none">
+                        <li>
+                            <a id="idn"
+                                class="idn block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                                role="menuitem">
+                                <div class="inline-flex items-center">
+                                    <img class="me-3" src="/public/assets/icon-idn.png" alt="">
+                                    IDN
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="eng"
+                                class="eng block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                                role="menuitem">
+                                <div class="inline-flex items-center">
+                                    <img class="me-3" src="/public/assets/icon-eng.png" alt="">
+                                    ENG
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button id="humberger" data-collapse-toggle="navbar-language" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-slate-200 hover:bg-opacity-50 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-language" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
+                <ul
+                    class="flex flex-col font-medium p-4 md:p-0 mt-4 border bg-white border-gray-100 rounded-lg lg:bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:ml-8 md:mt-0 md:border-0 md:bg-transparent">
+                    <li>
+                        <a id="nav-home" href="/public/index.html"
+                            class="nav-active block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0"
+                            aria-current="page">Beranda</a>
+                    </li>
+                    <li>
+                        <a id="nav-about" href="/public/tentang.html"
+                            class="navbar block py-2 px-3 md:p-0 text-slate-900 md:text-white rounded xl:text-white hover:bg-slate-200 md:hover:text-primary md:hover:bg-transparent xl:hover:bg-transparent">Tentang</a>
+                    </li>
+                    <li>
+                        <a id="nav-destination" href="/public/destinasi.html"
+                            class="navbar block py-2 px-3 md:p-0 text-slate-900 md:text-white rounded xl:text-white hover:bg-slate-200 md:hover:text-primary md:hover:bg-transparent xl:hover:bg-transparent">Destinasi</a>
+                    </li>
+                    <li>
+                        <a id="nav-favorite" href="/public/favorit.html"
+                            class="navbar block py-2 px-3 md:p-0 text-slate-900 md:text-white rounded xl:text-white hover:bg-slate-200 md:hover:text-primary md:hover:bg-transparent xl:hover:bg-transparent">Favorit</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- hero start -->
+    <section id="hero"
+        class="flex justify-center bg-center bg-no-repeat bg-cover bg-gray-700 bg-blend-multiply h-[100vh] font-poppins"
+        style="background-image: url('/public/assets/image 1.png');">
+        <div class="flex flex-col justify-center items-center px-4 mx-auto max-w-screen-xl text-center">
+            <div>
+                <h1 id="hero-subtitle" class="mb-4 text-base font-medium tracking-wide  text-slate-500 md:text-2xl">
+                    Selamat Datang di Destinasi Wisata Tegal</h1>
+                <p id="hero-title"
+                    class="mb-20 text-[48px] font-[700] text-slate-100 md:text-[72px] sm:px-16 lg:px-62 tracking-wide">
+                    Jelajahi Keindahan Alam Tanpa Batas
+                </p>
+            </div>
+            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                <a id="hero-button" href="#about"
+                    class="inline-flex justify-center items-center py-[10px] px-[48px] text-[16px] font-[600] text-center text-white rounded-md bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Eksplorasi
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- hero end -->
+
+    <!-- about start -->
+    <section id="about"
+        class="mt-40 mx-6 md:mx-[40px] lg:mx-[110px] xl:mx-[110px] flex flex-wrap justify-center gap-[80px] lg:flex-nowrap lg:justify-between xl:flex-nowrap xl:justify-between leading-normal scroll-mt-36">
+        <div
+            class="flex flex-col justify-around items-center xl:justify-start xl:items-start max-w-full lg:max-w-[55%] xl:max-w-[38%]">
+            <h6 id="about-subtitle" class="text-base text-center md:text-xl xl:text-left text-slate-600 font-semibold">-
+                Tentang
+            </h6>
+            <h1 id="about-title"
+                class="mt-2 text-4xl text-center xl:text-left text-slate-900 font-semibold leading-normal">
+                Kenali Tentang <br> Tegal Lebih Dalam</h1>
+            <p id="about-paragraph" class="mt-8 text-base sm:text-sm text-justify md:leading-[28.5px]">
+                Keindahan Alam Tegal mengundang Anda untuk merasakan pesona yang unik dari daerah yang kaya akan budaya
+                dan alam. Dengan sentuhan sejarah yang dalam dan keindahan alam yang menakjubkan, Tegal menawarkan
+                pengalaman yang tak terlupakan bagi setiap pengunjung. Nikmati keindahan pantai yang menakjubkan,
+                jelajahi warisan budaya yang kaya, dan rasakan keramahan penduduk lokal yang hangat. Dari destinasi
+                religius hingga wisata alam yang menawan, Tegal memiliki segala sesuatu untuk memuaskan setiap jenis
+                petualangan. Sambutlah keindahan dan keberagaman Tegal, dan biarkan diri Anda terpesona oleh pesona yang
+                luar biasa dari kota ini.
+            </p>
+            <a id="about-button" href="/public/tentang.html"
+                class="inline-flex justify-center items-center mt-10  py-[10px] px-[48px] text-base font-[600] w-[265px] h-[48px] text-center text-white rounded-md bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">Baca
+                Selengkapnya
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-2 gap-4">
+            <div ata-aos="fade-down" class="grid gap-4">
+                <div ata-aos="fade-down">
+                    <img ata-aos="fade-down" class="h-[230px] xl:h-[375px] rounded-xl" src="/public/assets/image 18.png"
+                        alt="" width="100%">
+                </div>
+                <div>
+                    <img class="h-[150px] xl:h-[310px] rounded-xl" src="/public/assets/image 20.png" alt=""
+                        width="100%">
+                </div>
+            </div>
+            <div class="grid gap-4">
+                <div>
+                    <img class="h-[150px] xl:h-[310px] rounded-xl" src="/public/assets/image 19.png" alt=""
+                        width="100%">
+                </div>
+                <div>
+                    <img class="h-[230px] xl:h-[375px] rounded-xl" src="/public/assets/image 21.png" alt=""
+                        width="100%">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about end -->
+
+    <!-- explore start -->
+    <section class="mt-[120px]">
+        <div class="w-full bg-slate-200 py-[80px] text-center">
+            <div class="flex flex-col items-center mx-5 md:mx-10">
+                <h1 id="explore-title" class="text-4xl text-center text-slate-900 font-semibold leading-normal">
+                    Kenapa Harus Tegal?</h1>
+                <p id="explore-paragraph"
+                    class="text-base text-center mt-5 lg:mt-4 md:px-[120px] text-slate-600 font-medium xl:px-0 xl:w-[500px]">
+                    Eksplorasi
+                    keindahan wisata dari Tegal dan jadikan sebagai salah satu pengalaman terbaik Anda</p>
+            </div>
+            <div
+                class="mt-[72px] md:mx-[40px] xl:mx-[110px] flex flex-wrap justify-center gap-8 md:flex-col md:items-center lg:flex-nowrap lg:gap-[75px] lg:flex-row xl:flex-row xl:justify-between xl:gap-[90px] xl:flex-nowrap">
+                <div
+                    class="card-1 flex flex-col justify-center items-center gap-5 w-[332px] h-[347px] md:w-3/4 py-[32px] px-[16px] bg-slate-100 rounded-xl shadow-custom text-center">
+                    <img src="/public/assets/Icon.png" width="84px" alt="">
+                    <h1 id="explore-subtitle-1"
+                        class="mt-[30px] text-xl md:text-3xl xl:text-xl font-semibold text-slate-900">Destinasi Wisata
+                        yang Terjangkau</h1>
+                    <p id="explore-paragraph-1" class="text-sm md:text-xl xl:text-base text-slate-600 leading-[28.5px]">
+                        Tegal memiliki berbagai
+                        pilihan tempat wisata yang terjangkau dan beragam</p>
+                </div>
+                <div
+                    class="card-1 flex flex-col justify-center items-center gap-5 w-[332px] h-[347px] md:w-3/4 py-[32px] px-[16px] bg-slate-100 rounded-xl shadow-custom text-center">
+                    <img src="/public/assets/Icon-1.png" width="84px" alt="">
+                    <h1 id="explore-subtitle-2"
+                        class="mt-[30px] text-xl md:text-3xl xl:text-xl font-[600] text-slate-900">Keindahan Alam yang
+                        Menakjubkan</h1>
+                    <p id="explore-paragraph-2" class="text-sm md:text-xl xl:text-base text-slate-600 leading-[28.5px]">
+                        Tegal menawarkan
+                        destinasi alam yang
+                        menakjubkan, dari pantai hingga pegunungan</p>
+                </div>
+                <div
+                    class="card-1 flex flex-col justify-center items-center gap-5 w-[332px] h-[347px] md:w-3/4  py-[32px] px-[16px] bg-slate-100 rounded-xl shadow-custom text-center">
+                    <img src="/public/assets/Icon-2.png" width="84px" alt="">
+                    <h1 id="explore-subtitle-3"
+                        class="mt-[30px] text-xl px-[20px] md:text-3xl xl:text-xl font-[600] text-slate-900">Kuliner
+                        yang Menggugah Selera
+                    </h1>
+                    <p id="explore-paragraph-3" class="text-sm md:text-xl xl:text-base text-slate-600 leading-[28.5px]">
+                        Tegal dikenal dengan
+                        beragam hidangan lezatnya, jadi jangan lewatkan untuk mencicipinya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- explore end -->
+
+    <!-- destination start -->
+    <section class="mt-[80px] mx-5 md:mx-[40px] lg:mx-[40px] xl:mx-[110px]">
+        <div class="flex flex-col justify-center items-center gap-[8px]">
+            <h6 id="destination-subtitle"
+                class="text-base text-center xl:text-left md:text-xl text-slate-600 font-semibold">- Destinasi</h6>
+            <h1 id="destination-title"
+                class="mt-2 lg:-mt-3 text-4xl text-center xl:text-left text-slate-900 font-semibold leading-normal ">
+                Destinasi Populer</h1>
+            <p id="destination-paragraph"
+                class="mb-[72px] mt-5 lg:mt-3 text-base text-slate-600 text-center font-medium">Temukan destinasi wisata
+                terbaik untuk pengalaman Anda</p>
+        </div>
+        <div class="flex justify-center flex-wrap gap-10 lg:flex-nowrap xl:gap-5">
+            <div data-id="1" class="card w-[391px] md:w-3/4 overflow-hidden relative">
+                <div class="btn-fav absolute mt-6 right-10 flex justify-center cursor-pointer">
+                    <div class="w-10 h-10 absolute bg-slate-100 rounded-full"></div>
+                    <i class="love mt-5 absolute fa-regular fa-xl fa-heart text-slate-600"></i>
+                    <input class="check z-[99999] mt-3 opacity-0 cursor-pointer" type="checkbox">
+                </div>
+                <img src="/public/assets/guci cover.png" class="rounded-xl" alt="">
+                <div class="flex flex-col">
+                    <h1 class="mt-4 font-semibold text-xl">Wisata Air Panas Guci</h1>
+                    <div class="flex gap-1 mt-1 mb-5">
+                        <img src="/public/assets/Address.png" alt="" width="24px">
+                        <p class="text-base font-medium text-slate-600">Guci, Kecamatan Bumijawa</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <a id="link-button-1" href="/public/guci.html" class="text-primary font-semibold">Jelajahi
+                            Sekarang </a>
+                        <i id="icon" class="fa-solid fa-arrow-right fa-lg" style="color: #0558d4;"></i>
+                    </div>
+                </div>
+            </div>
+            <div data-id="2" class="card w-[391px] md:w-3/4 overflow-hidden relative">
+                <div class="btn-fav absolute mt-6 right-10 flex justify-center cursor-pointer">
+                    <div class="w-10 h-10 absolute bg-slate-100 rounded-full"></div>
+                    <i class="love mt-5 absolute fa-regular fa-xl fa-heart text-slate-600"></i>
+                    <input class="check z-[99999] mt-3 opacity-0 cursor-pointer" type="checkbox">
+                </div>
+                <img src="/public/assets/cacaban cover.png" class="rounded-xl" alt="">
+                <div class="flex flex-col">
+                    <h1 class="mt-4 font-semibold text-xl">Waduk Cacaban</h1>
+                    <div class="flex gap-1 mt-1 mb-5">
+                        <img src="/public/assets/Address.png" alt="" width="24px">
+                        <p class="text-base font-medium text-slate-600">Karanganyar, Kedungbanteng</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <a id="link-button-2" href="/public/cacaban.html" class="text-primary font-semibold">Jelajahi
+                            Sekarang </a>
+                        <i class="fa-solid fa-arrow-right fa-lg" style="color: #0558d4;"></i>
+                    </div>
+                </div>
+            </div>
+            <div data-id="3" class="card w-[391px] md:w-3/4 overflow-hidden relative">
+                <div class="btn-fav absolute mt-6 right-10 flex justify-center cursor-pointer">
+                    <div class="w-10 h-10 absolute bg-slate-100 rounded-full"></div>
+                    <i class="love mt-5 absolute fa-regular fa-xl fa-heart text-slate-600"></i>
+                    <input class="check z-[99999] mt-3 opacity-0 cursor-pointer" type="checkbox">
+                </div>
+                <img src="/public/assets/pai cover.png" class="rounded-xl" alt="">
+                <div class="flex flex-col">
+                    <h1 class="mt-4 font-semibold text-xl">Pantai Alam Indah</h1>
+                    <div class="flex gap-1 mt-1 mb-5">
+                        <img src="/public/assets/Address.png" alt="" width="24px">
+                        <p class="text-base font-medium text-slate-600">Mintaragen, Tegal Timur</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <a id="link-button-3" href="/public/pai.html" class="text-primary font-semibold">Jelajahi
+                            Sekarang </a>
+                        <i class="fa-solid fa-arrow-right fa-lg" style="color: #0558d4;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <a href="/public/destinasi.html">
+                <button id="destination-button"
+                    class="mt-[72px] py-[10px] px-[48px] items-center bg-primary hover:bg-blue-800 text-slate-50 font-[600] rounded-md">Lihat
+                    Semua</button>
+            </a>
+        </div>
+    </section>
+    <!-- destination end -->
+
+    <!-- faq start -->
+    <section
+        class="mt-[160px] mx-5 md:mx-[40px] xl:mx-[110px] flex flex-wrap xl:flex-nowrap justify-center items-start">
+        <div>
+            <div>
+                <div class="flex flex-col xl:justify-start xl:gap-[8px]">
+                    <h6 class="text-base text-center md:text-xl xl:text-left text-slate-600 font-semibold">-FAQ's</h6>
+                    <h1 class="mt-2 text-4xl text-center xl:text-left text-slate-900 font-semibold leading-normal">
+                        Frequently Asked Questions</h1>
+                    <p id="faq-paragraph" class="text-base text-slate-600 mt-5 text-center xl:text-left font-medium">
+                        Beberapa pertanyaan
+                        seputar destinasi di Tegal yang <br>mungkin bisa membantu Anda </p>
+                </div>
+            </div>
+            <div class="mt-[48px]">
+                <div class="w-full">
+                    <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+                        id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+                        <li class="w-full">
+                            <button id="faq-tab" data-tabs-target="#faq" type="button" role="tab" aria-controls="faq"
+                                aria-selected="false"
+                                class="inline-block w-full rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"></button>
+                        </li>
+                    </ul>
+                    <div id="fullWidthTabContent" class=" border-gray-200 dark:border-gray-600">
+                        <div class="hidden bg-white rounded-lg" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                            <div id="accordion-flush" data-accordion="collapse"
+                                data-active-classes="bg-white text-gray-900" data-inactive-classes="text-slate-900">
+                                <h2 id="accordion-flush-heading-1">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-semibold text-left rtl:text-right text-slate-900 border-b border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-1" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-1">
+                                        <span id="question-1">Apa saja destinasi yang populer di Tegal?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-1" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-1">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-1" class="mb-2 text-slate-700">Destinasi populer yang ada di Tegal
+                                            adalah Pemandian Air Panas Guci, Waduk Cacaban, dan Pantai Alam Indah</p>
+                                    </div>
+                                </div>
+                                <h2 id="accordion-flush-heading-2">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-[600] text-left rtl:text-right text-slate-900 border-b border-gray-200 dark:border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-2" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-2">
+                                        <span id="question-2">Apa saja tips ketika akan berwisata di Tegal?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-2" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-2">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-2" class="mb-2 text-slate-700">Pilih waktu yang tepat, persiapkan
+                                            apa saja yang ingin dibawa, siapkan uang tunai, dan patuhi peraturan yang
+                                            ada di destinasi wisata</p>
+                                    </div>
+                                </div>
+                                <h2 id="accordion-flush-heading-3">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-[600] text-left rtl:text-right text-slate-900 border-b border-gray-200 dark:border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-3" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-3">
+                                        <span id="question-3">Adakah biaya masuk yang harus dibayar untuk masuk
+                                            destinasi wisata di
+                                            Tegal?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-3" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-3">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-3" class="mb-2 text-slate-700">Tentu saja ada. Jika ingin
+                                            melihatnya, Anda dapat masuk ke bagian destinasi dan untuk harga yang
+                                            tertera adalah harga masuk ke wisatanya. Untuk harga wahananya yang ada pada
+                                            destinasi akan berbeda dengan harga masuknya</p>
+                                    </div>
+                                </div>
+                                <h2 id="accordion-flush-heading-4">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-[600] text-left rtl:text-right text-slate-900 border-b border-gray-200 dark:border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-4" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-4">
+                                        <span id="question-4">Apakah ada peta/petunjuk destinasi sehingga mempermudah
+                                            untuk menuju
+                                            kesana?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-4" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-4">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-4" class="mb-2 text-slate-700">Ada, kami sudah menyediakan untuk
+                                            semua destinasi memiliki peta, sehingga itu dapat memudahkan Anda mencari
+                                            destinasi yang ada di Tegal</p>
+                                    </div>
+                                </div>
+                                <h2 id="accordion-flush-heading-5">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-[600] text-left rtl:text-right text-slate-900 border-b border-gray-200 dark:border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-5" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-5">
+                                        <span id="question-5">Apakah tersedia fasilitas seperti toilet, tempat makan,
+                                            atau tempat parkir di destinasi wisata di Tegal?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-5" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-5">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-5" class="mb-2 text-slate-700">Untuk melihat fasilitas yang
+                                            tersedia, Anda dapat melihatnya pada bagian 'Fasilitas Destinasi' di halaman
+                                            destinasi</p>
+                                    </div>
+                                </div>
+                                <h2 id="accordion-flush-heading-6">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full py-5 font-[600] text-left rtl:text-right text-slate-900 border-b border-gray-200 dark:border-gray-300"
+                                        data-accordion-target="#accordion-flush-body-6" aria-expanded="false"
+                                        aria-controls="accordion-flush-body-6">
+                                        <span id="question-6">Apakah destinasi wisata di Tegal cocok untuk dikunjungi
+                                            oleh keluarga
+                                            dengan anak-anak?</span>
+                                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 5 5 1 1 5" />
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-flush-body-6" class="hidden"
+                                    aria-labelledby="accordion-flush-heading-6">
+                                    <div class="py-5 border-b border-gray-500">
+                                        <p id="answer-6" class="mb-2 text-slate-700">Sangat cocok. Tetapi awasi keluarga
+                                            Anda, jangan biarkan berkeliaran sendiri terutama anak - anak, karena banyak
+                                            orang yang juga menikmati liburan bersama keluarganya</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="mt-10 w-full xl:w-[55%] xl:mt-0" src="/public/assets/illustration-1.png" alt="" width="45%">
+    </section>
+    <!-- faq end -->
+
+    <!-- card footer start -->
+    <section
+        class="mt-[72px] mx-5 md:mx-10 lg:mx-[110px] xl:mx-[110px] w-max-full py-5 px-5 bg-white rounded-lg shadow-custom">
+        <div
+            class="flex flex-wrap md:flex-nowrap lg:flex-nowrap justify-center xl:justify-between 2xl:justify-center gap-8">
+            <div class="flex flex-col md:justify-center xl:w-3/5 2xl:pl-10">
+                <h1 id="footer-title"
+                    class="text-xl xl:text-4xl text-slate-900 font-semibold leading-normal xl:leading-[65px]">Tunggu Apa
+                    Lagi? Ayo Jelajahi dan Rasakan Pengalaman yang Tak Terlupakan</h1>
+                <a id="footer-button"
+                    class="py-2 px-6 xl:py-3 xl:px-12 mt-6 xl:w-1/2 text-slate-100 bg-primary hover:bg-blue-800  text-center rounded-md font-semibold"
+                    href="/public/destinasi.html"><button>Jelajahi Destinasi</button></a>
+            </div>
+            <img class="w-full md:w-[45%]" src="/public/assets/illustration-2.png" alt="">
+        </div>
+    </section>
+    <!-- card footer end -->
+
+    <!-- footer start -->
+    <footer class="mt-[72px] bg-gray-900">
+        <div class="w-full mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between mx-5 md:mx-[40px] lg:mx-[110px]">
+                <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Logo</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 text-gray-400">
+                    <li>
+                        <a id="footer-home" href="/public/index.html" class="hover:underline me-4 md:me-6">Beranda</a>
+                    </li>
+                    <li>
+                        <a id="footer-about" href="/public/tentang.html"
+                            class="hover:underline me-4 md:me-6">Tentang</a>
+                    </li>
+                    <li>
+                        <a id="footer-destination" href="/public/destinasi.html"
+                            class="hover:underline me-4 md:me-6">Destinasi</a>
+                    </li>
+                    <li>
+                        <a id="footer-favorite" href="/public/favorit.html" class="hover:underline">Favorit</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 md:mx-[40px] lg:mx-[110px] sm:mx-auto border-gray-700 lg:my-8" />
+            <span class="block text-sm text-center text-gray-400">© 2024 <a href="#" class="hover:underline">Restu
+                    Ibu</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
+    <!-- footer end -->
+
+    <script src="/public/script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
